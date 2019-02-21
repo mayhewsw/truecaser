@@ -4,6 +4,10 @@ This is an implementation of a trainable Truecaser for Python.
 A truecaser converts a sentence where the casing was lost to the most probable casing. Use cases are sentences that are in all-upper case, in all-lower case or in title case.
 
 A model for English is provided, achieving an accuracy of **98.39%** on a small test set of random sentences from Wikipedia.
+Avg sec/sentence: 0.0011373331972380292
+
+A fast (unigram) model is also provided, with an accuracy of **96.23%** on the same test set as above.
+Avg sec/sentence: 0.0001906201700275799
 
 # Model
 The model was inspired by the paper of [Lucian Vlad Lita  et al., tRuEcasIng](https://www.cs.cmu.edu/~llita/papers/lita.truecasing-acl2003.pdf) but with some simplifications.

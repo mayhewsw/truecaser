@@ -3,19 +3,26 @@ from mytruecaser import TrueCaser
 import pickle
 import nltk
 import string
-
+import timeit
 
 def evaluateTrueCaser(testSentences):
     correctTokens = 0
     totalTokens = 0
 
     tc = TrueCaser("english_distributions.obj")
+
+    elapsed = 0
     
     for sentence in testSentences:
         tokensCorrect = nltk.word_tokenize(sentence)
         tokens = [token.lower() for token in tokensCorrect]
         #tokensTrueCase = getTrueCase(tokens, 'title', wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist)
-        tokensTrueCase = tc.truecase_fast(tokens)
+        start = timeit.default_timer()
+        tokensTrueCase = tc.truecase(tokens)
+        stop = timeit.default_timer()
+        print('Time: ', stop - start)  
+
+        elapsed += stop - start
         
         perfectMatch = True
         
@@ -32,7 +39,7 @@ def evaluateTrueCaser(testSentences):
         
             print("-------------------")
     
-
+    print("Avg time {}".format(elapsed / len(testSentences)))
     print("Accuracy: %.2f%%" % (correctTokens / float(totalTokens)*100))
     
     
