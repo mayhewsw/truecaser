@@ -15,7 +15,7 @@ def getScore(prevToken, possibleToken, nextToken, wordCasingLookup, uniDist, bac
         denominator += uniDist[alternativeToken]+pseudoCount
         
     unigramScore = nominator / denominator
-        
+
         
     #Get Backward Score  
     bigramBackwardScore = 1
@@ -66,7 +66,7 @@ def getTrueCase(tokens, outOfVocabularyTokenOption, wordCasingLookup, uniDist, b
         as-is: Returns OOV tokens as is
     """
     tokensTrueCase = []
-    for tokenIdx in xrange(len(tokens)):
+    for tokenIdx in range(len(tokens)):
         token = tokens[tokenIdx]
         if token in string.punctuation or token.isdigit():
             tokensTrueCase.append(token)

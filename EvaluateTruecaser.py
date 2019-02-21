@@ -1,21 +1,25 @@
 from Truecaser import *
-import cPickle
+from mytruecaser import TrueCaser
+import pickle
 import nltk
 import string
 
 
-def evaluateTrueCaser(testSentences, wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist):
+def evaluateTrueCaser(testSentences):
     correctTokens = 0
     totalTokens = 0
+
+    tc = TrueCaser("english_distributions.obj")
     
     for sentence in testSentences:
         tokensCorrect = nltk.word_tokenize(sentence)
         tokens = [token.lower() for token in tokensCorrect]
-        tokensTrueCase = getTrueCase(tokens, 'title', wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist)
+        #tokensTrueCase = getTrueCase(tokens, 'title', wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist)
+        tokensTrueCase = tc.truecase_fast(tokens)
         
         perfectMatch = True
         
-        for idx in xrange(len(tokensCorrect)):
+        for idx in range(len(tokensCorrect)):
             totalTokens += 1
             if tokensCorrect[idx] == tokensTrueCase[idx]:
                 correctTokens += 1
@@ -23,16 +27,16 @@ def evaluateTrueCaser(testSentences, wordCasingLookup, uniDist, backwardBiDist, 
                 perfectMatch = False
         
         if not perfectMatch:
-            print tokensCorrect
-            print tokensTrueCase
+            print(tokensCorrect)
+            print(tokensTrueCase)
         
-            print "-------------------"
+            print("-------------------")
     
 
-    print "Accuracy: %.2f%%" % (correctTokens / float(totalTokens)*100)
+    print("Accuracy: %.2f%%" % (correctTokens / float(totalTokens)*100))
     
     
-def defaultTruecaserEvaluation(wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist):
+def defaultTruecaserEvaluation():
     testSentences = [
         "Its website was launched on February 4, 2004 by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes."
         ,"Facebook is a for-profit corporation and online social networking service based in Menlo Park, California, United States. "
@@ -89,15 +93,16 @@ def defaultTruecaserEvaluation(wordCasingLookup, uniDist, backwardBiDist, forwar
         ,"Internationally, Ulm is primarily known for having the church with the tallest steeple in the world (161.53 m or 529.95 ft), the Gothic minster (Ulm Minster) and as the birthplace of Albert Einstein."
     ]
     
-    evaluateTrueCaser(testSentences, wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist)
+    evaluateTrueCaser(testSentences)
     
 if __name__ == "__main__":       
-    f = open('english_distributions.obj', 'rb')
-    uniDist = cPickle.load(f)
-    backwardBiDist = cPickle.load(f)
-    forwardBiDist = cPickle.load(f)
-    trigramDist = cPickle.load(f)
-    wordCasingLookup = cPickle.load(f)
-    f.close()
+    #f = open('english_distributions.obj', 'rb')
+    #uniDist = pickle.load(f)
+    #backwardBiDist = pickle.load(f)
+    #forwardBiDist = pickle.load(f)
+    #trigramDist = pickle.load(f)
+    #wordCasingLookup = pickle.load(f)
+    #f.close()
     
-    defaultTruecaserEvaluation(wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist)
+    defaultTruecaserEvaluation()
+

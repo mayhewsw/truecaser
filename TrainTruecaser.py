@@ -5,7 +5,7 @@ import nltk
 import nltk.corpus
 from nltk.corpus import brown
 from nltk.corpus import reuters
-import cPickle
+import pickle
 import string
 import math
 import MySQLdb
@@ -37,7 +37,7 @@ The more training data, the better the results
          
 
 # :: Option 1: Train it based on NLTK corpus ::
-print "Update from NLTK Corpus"
+print("Update from NLTK Corpus")
 NLTKCorpus = brown.sents()+reuters.sents()+nltk.corpus.semcor.sents()+nltk.corpus.conll2000.sents()+nltk.corpus.state_union.sents()
 updateDistributionsFromSentences(NLTKCorpus, wordCasingLookup, uniDist, backwardBiDist, forwardBiDist, trigramDist)
 
@@ -59,11 +59,11 @@ updateDistributionsFromNgrams('ngrams/w2.txt', 'ngrams/w3.txt', wordCasingLookup
 """
 
 f = open('distributions.obj', 'wb')
-cPickle.dump(uniDist, f, protocol=cPickle.HIGHEST_PROTOCOL)
-cPickle.dump(backwardBiDist, f, protocol=cPickle.HIGHEST_PROTOCOL)
-cPickle.dump(forwardBiDist, f, protocol=cPickle.HIGHEST_PROTOCOL)
-cPickle.dump(trigramDist, f, protocol=cPickle.HIGHEST_PROTOCOL)
-cPickle.dump(wordCasingLookup, f, protocol=cPickle.HIGHEST_PROTOCOL)
+pickle.dump(uniDist, f, protocol=pickle.HIGHEST_PROTOCOL)
+pickle.dump(backwardBiDist, f, protocol=pickle.HIGHEST_PROTOCOL)
+pickle.dump(forwardBiDist, f, protocol=pickle.HIGHEST_PROTOCOL)
+pickle.dump(trigramDist, f, protocol=pickle.HIGHEST_PROTOCOL)
+pickle.dump(wordCasingLookup, f, protocol=pickle.HIGHEST_PROTOCOL)
 f.close()
 
 
