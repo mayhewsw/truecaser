@@ -43,8 +43,7 @@ def evaluateTrueCaser(testSentences):
     
     
 def defaultTruecaserEvaluation():
-    #fname = "testsentences.txt"
-    fname = "/home/mayhew2/IdeaProjects/pytorch-truecaser/data/data.v1.split/normal.testing.txt"
+    fname = "testsentences.txt"
     with open(fname) as f:
         testSentences = f.read().split("\n")
     
