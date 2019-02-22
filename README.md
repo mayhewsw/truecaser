@@ -9,6 +9,10 @@ Avg sec/sentence: 0.0011373331972380292
 A fast (unigram) model is also provided, with an accuracy of **96.23%** on the same test set as above.
 Avg sec/sentence: 0.0001906201700275799
 
+The English model achieves **94.15%** accuracy on the [Wikipedia dataset](http://www.cs.pomona.edu/~dkauchak/simplification/data.v1/data.v1.split.tar.gz) used in [(Susanto et al 2016)](https://aclweb.org/anthology/D16-1225). Compare this with the
+best accuracy from that paper on that test set: **97.41%**. 
+
+
 # Model
 The model was inspired by the paper of [Lucian Vlad Lita  et al., tRuEcasIng](https://www.cs.cmu.edu/~llita/papers/lita.truecasing-acl2003.pdf) but with some simplifications.
 
