@@ -41,5 +41,5 @@ class TrueCaser:
 if __name__ == "__main__":       
     t = TrueCaser('english_distributions.obj')
 
-    print(t.truecase("stephen loves heidi".split()))
-    print(t.truecase_fast("stephen loves heidi".split()))
+    print(t.truecase("john loves mary".split()))
+    print(t.truecase_fast("john loves mary".split()))
